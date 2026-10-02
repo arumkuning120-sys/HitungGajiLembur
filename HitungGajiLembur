@@ -1,0 +1,48 @@
+package Hitung;
+import java.util.Scanner;
+public class HitungGajiArray {
+public static void main(String[] args) {
+Scanner input = new Scanner(System.in);
+// Array Golongan dan Gaji Pokok
+char[] daftarGolongan = {'A', 'B', 'C'};
+double[] gajiPokokList = {5000000, 6500000, 9500000};
+// Array persentase lembur
+double[] persentaseLembur = {0, 30, 32, 34, 36, 38};
+// Input Golongan
+System.out.print("Masukkan Golongan (A/B/C): ");
+char golongan = input.next().toUpperCase().charAt(0);
+// Cari gaji pokok dari array
+double gajiPokok = -1;
+for (int i = 0; i < daftarGolongan.length; i++) {
+if (golongan == daftarGolongan[i]) {
+gajiPokok = gajiPokokList[i];
+break;
+}
+}
+if (gajiPokok == -1) {
+System.out.println("Golongan tidak valid!");
+return;
+}
+
+// Input Jam Lembur
+System.out.print("Masukkan Jam Lembur: ");
+int jamLembur = input.nextInt();
+// Validasi jam lembur
+if (jamLembur < 0) {
+System.out.println("Jam lembur tidak valid!");
+return;
+}
+// Tentukan persentase lembur
+double persentase;
+if (jamLembur >= 5) {
+persentase = persentaseLembur[5];
+} else {
+persentase = persentaseLembur[jamLembur];
+}
+// Hitung gaji lembur
+double gajiLembur = (persentase / 100) * gajiPokok;
+double totalPenghasilan = gajiPokok + gajiLembur;
+// Output
+System.out.println("Jumlah penghasilan: Rp. " + totalPenghasilan);
+}
+}
